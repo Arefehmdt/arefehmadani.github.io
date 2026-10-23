@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Arefeh Madani-Talab — industrial engineering researcher exploring dynamic vehicle routing, optimization, and data analytics.">
+<meta name="theme-color" content="#f7f8fa">
 <title>Arefeh Madani-Talab · Operations Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,25 +128,71 @@ footer{padding:24px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px sol
 
 @media(max-width:640px){nav a:nth-child(n+4){display:none}.wrap{padding:0 20px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* Refined editorial layout */
+:root{--bg:#f7f8fa;--ink:#162c39;--muted:#596c79;--accent:#306856;--accent-soft:#e6efe9;--req:#d48135}
+.wrap{max-width:1180px;padding-inline:32px}
+header .wrap{height:76px}.brand{font-size:1rem;letter-spacing:-.03em}
+nav a{font-size:.85rem}.nav-tools{display:flex;align-items:center;gap:16px}
+.icon-btn,.sim-controls button{font:500 .8rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;padding:9px 12px;cursor:pointer}
+.skip{position:fixed;top:-90px;left:16px;z-index:100;background:var(--surface);padding:12px}.skip:focus{top:12px}
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:.73rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-bottom:25px}
+.eyebrow:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.hero{padding:76px 0 88px}.hero h1{font-size:clamp(3rem,5.8vw,5rem);line-height:1.02;max-width:9em}
+.lead{font-size:1.05rem;line-height:1.8;max-width:34em}.tags li{border:1px solid var(--line);background:transparent;color:var(--muted);font-size:.77rem;padding:5px 11px}
+.btn{font-size:.87rem;border-radius:9px;padding:13px 20px;border-width:1px}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn:not(.primary){border-color:var(--line);background:var(--surface)}
+.sim{border-radius:20px;padding:18px;box-shadow:0 20px 60px -35px #163a3540;position:relative}.sim canvas{border-radius:12px;aspect-ratio:1.1}
+.sim-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:.76rem;font-weight:600}.sim-heading span:last-child{font-size:.65rem;color:var(--accent);background:var(--accent-soft);padding:4px 8px;border-radius:5px}
+.sim figcaption{font-size:.72rem;padding-top:16px}.sim-controls{display:flex;gap:8px;margin-top:13px}.sim-note{font-size:.67rem;color:var(--muted);margin-top:10px;line-height:1.6}
+section{padding:82px 0}.sec-head{position:relative;padding-top:26px;gap:14px;margin-bottom:32px}.section-number{position:absolute;top:0;font-size:.68rem;letter-spacing:.13em;color:var(--accent);font-weight:600}.sec-head h2{font-size:2.3rem}.sec-head p{font-size:.95rem}
+.feature{background:#173d34;color:#f4f8f5;border-radius:16px;position:relative;padding:38px}.feature h3{font-size:1.85rem;line-height:1.22;max-width:34em}.feature .meta{font-size:.77rem}.feature>p:not(.meta){color:#b8d6ca;font-size:.92rem}.feature ul{font-size:.93rem}.trade{margin-top:8px!important}.trade li{font-size:.72rem;border-color:#65877a}
+.box{border-radius:14px;padding:28px;gap:17px}.box h3{font-size:1.35rem}.box ul{font-size:.9rem;line-height:1.8}.badge{font-size:.68rem;background:var(--accent-soft);color:var(--accent)}
+.filters button{font-size:.8rem;padding:8px 14px}.filters button[aria-pressed="true"]{color:#fff}summary{padding:25px 58px 25px 25px}summary h3{font-size:1.1rem}summary .meta{font-size:.8rem}.body{font-size:.92rem}
+.cols h3{font-size:1.35rem}.timeline p,.rows{font-size:.9rem}.skills{padding-top:30px;border-top:1px solid var(--line)}.skills p{font-size:.88rem;line-height:1.8}
+.contact{background:var(--accent-soft)}.contact h2{max-width:19em;font-size:clamp(2rem,4.6vw,3.5rem)}.contact .links .btn{overflow-wrap:anywhere;max-width:100%}footer .wrap{display:flex;justify-content:space-between;gap:20px;font-size:.75rem}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.05fr 1fr;gap:65px}}
+@media(max-width:700px){.wrap{padding-inline:22px}header .wrap{height:auto;min-height:72px;flex-wrap:wrap;gap:6px;padding-block:12px}.nav-tools{width:100%;justify-content:space-between;gap:6px}nav{flex-wrap:wrap}nav a{font-size:.73rem;padding:7px 8px}nav a:nth-child(n+4){display:block}.brand{font-size:.95rem}.hero{padding:45px 0 55px}.hero h1{font-size:3.2rem}.hero .wrap{gap:35px}.lead{font-size:.98rem}.feature{padding:25px}.feature h3{font-size:1.45rem}section{padding:55px 0}.rows li{gap:8px}.rows span:last-child{font-size:.75rem}.sim figcaption{flex-wrap:wrap}html{scroll-padding-top:130px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Portfolio polish: restrained typography and clearer hierarchy */
+.hero h1{font-size:clamp(1.6rem,2.75vw,2.35rem);line-height:1.2;letter-spacing:-.045em;max-width:none;white-space:nowrap}
+.hero .eyebrow{font-size:.64rem;letter-spacing:.12em;margin-bottom:20px}
+.hero .lead{margin-top:24px;font-size:1rem;line-height:1.9}
+.hero{background:radial-gradient(ellipse at 82% 20%,var(--accent-soft),transparent 58%)}
+header{background:color-mix(in srgb,var(--bg) 95%,transparent)}
+.sim{box-shadow:0 24px 64px -40px #173d3450;border-color:color-mix(in srgb,var(--accent) 20%,var(--line))}
+.sim-heading{letter-spacing:.015em}.sim-heading span:last-child{letter-spacing:.08em}
+.feature{border:1px solid #31574b;box-shadow:0 12px 32px -26px #163a35}.feature h3{font-size:clamp(1.4rem,2.3vw,1.8rem);letter-spacing:-.025em}
+.box{transition:transform .2s,border-color .2s}.box:hover{transform:translateY(-3px);border-color:var(--accent)}
+.projects{counter-reset:project}.projects details{counter-increment:project;border-radius:10px}.projects summary{padding-left:66px}.projects summary:before{content:counter(project,decimal-leading-zero);position:absolute;left:23px;top:28px;font:500 .75rem var(--body);color:var(--accent)}
+.projects summary h3{line-height:1.45}.body{padding-left:66px}.stack{font-size:.77rem;letter-spacing:.02em}
+.skills h4{font-size:.86rem}.skills>div{padding:4px 0 12px}.contact .links{gap:10px}
+nav a[aria-current="location"]{background:var(--accent-soft);color:var(--accent)}
+@media(max-width:700px){.hero h1{font-size:clamp(1.1rem,5.5vw,2rem);letter-spacing:-.04em}.hero .eyebrow{font-size:.58rem;letter-spacing:.055em}.hero .lead{font-size:.94rem}.projects summary{padding-left:53px}.projects summary:before{left:18px;top:30px}.body{padding-left:24px}.sim-heading{font-size:.68rem}.sim-heading span:last-child{font-size:.55rem}}
+@media(prefers-reduced-motion:reduce){.box:hover{transform:none}}
+
 </style>
 </head>
 <body>
+<a class="skip" href="#main-content">Skip to content</a>
 <header>
   <div class="wrap">
     <a class="brand" href="#top">Arefeh Madani-Talab</a>
-    <nav aria-label="Sections">
+    <div class="nav-tools"><nav aria-label="Sections">
       <a href="#research">Research</a>
       <a href="#projects">Projects</a>
       <a href="#background">Background</a>
       <a href="#contact">Contact</a>
-    </nav>
+    </nav><button class="icon-btn" id="theme" type="button" aria-label="Switch color theme">Dark mode</button></div>
   </div>
 </header>
 
-<main id="top">
+<main id="top"><div id="main-content" tabindex="-1"></div>
 <div class="hero">
   <div class="wrap">
     <div>
+      <p class="eyebrow">Industrial engineering · Operations research</p>
       <h1>Arefeh Madani-Talab</h1>
       <p class="lead">M.Sc. researcher in industrial engineering. I love <strong>routing problems</strong> and operations research, and I use data to make better decisions. My thesis asks when a routing system should re-plan as new requests arrive.</p>
       <ul class="tags">
@@ -156,8 +204,9 @@ footer{padding:24px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px sol
       </div>
     </div>
     <figure class="sim" style="margin:0">
+      <div class="sim-heading"><span>Dynamic routing, in motion</span><span>INTERACTIVE SKETCH</span></div>
       <canvas id="sim" aria-label="Animated sketch: orange requests with shrinking time-window rings appear and three delivery trucks re-plan their routes" role="img"></canvas>
-      <figcaption><span>Click anywhere to add a request and watch the routes re-plan.</span><span>Re-plans: <b id="count">0</b></span></figcaption>
+      <figcaption><span>Click anywhere to add a request and watch the routes re-plan.</span><span>Re-plans: <b id="count">0</b></span></figcaption><div class="sim-controls"><button id="add-request" type="button">+ Add request</button><button id="pause-sim" type="button" aria-pressed="false">Pause animation</button></div><p class="sim-note">Illustrative cheapest-insertion sketch. This is not a trained RL policy or a validated routing solver.</p>
     </figure>
   </div>
 </div>
@@ -165,7 +214,7 @@ footer{padding:24px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px sol
 <section id="research">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Research</h2>
+      <span class="section-number">01 / RESEARCH</span><h2>Research</h2>
       <p class="muted">Thesis work on dynamic routing, plus a supply chain model in preparation.</p>
     </div>
 
@@ -211,7 +260,7 @@ footer{padding:24px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px sol
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Projects</h2>
+      <span class="section-number">02 / SELECTED WORK</span><h2>Projects</h2>
       <p class="muted">Open a project for the method and results.</p>
     </div>
     <div class="filters" role="group" aria-label="Filter projects">
@@ -266,7 +315,7 @@ footer{padding:24px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px sol
 
 <section id="background">
   <div class="wrap">
-    <div class="cols">
+    <div class="sec-head"><span class="section-number">03 / BACKGROUND</span><h2>Learning, teaching &amp; practice.</h2></div><div class="cols">
       <div>
         <h3>Education and honors</h3>
         <ol class="timeline">
@@ -313,15 +362,36 @@ footer{padding:24px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px sol
     <h2>Let’s talk about routing, operations research, data or a collaboration.</h2>
     <div class="links">
       <a class="btn primary" href="mailto:Arefehmadani@outlook.com">Arefehmadani@outlook.com</a>
-      <a class="btn" href="http://www.linkedin.com/in/arefehmadani" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://www.linkedin.com/in/arefehmadani" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn" href="https://github.com/Arefehmdt" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
 </main>
-<footer><div class="wrap">Mashhad, Iran</div></footer>
+<footer><div class="wrap"><span>Arefeh Madani-Talab · Mashhad, Iran</span><a href="#top">Back to top ↑</a></div></footer>
 
 <script>
+const themeButton = document.getElementById('theme');
+function updateThemeButton(){themeButton.textContent = (document.documentElement.dataset.theme === 'dark') ? 'Light mode' : 'Dark mode';}
+try {document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');} catch(e) {document.documentElement.dataset.theme = 'light';}
+updateThemeButton();
+themeButton.addEventListener('click',function(){document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';try{localStorage.setItem('portfolio-theme',document.documentElement.dataset.theme)}catch(e){}updateThemeButton();window.dispatchEvent(new Event('portfolio-theme'));});
+
+// Mark the section currently being read.
+if ('IntersectionObserver' in window) {
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('nav a').forEach(link => {
+          if (link.getAttribute('href') === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+    });
+  }, {rootMargin: '-15% 0px -55% 0px'});
+  document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
+}
+
 // Project filters
 document.querySelectorAll('.filters button').forEach(function(b){
   b.addEventListener('click',function(){
@@ -407,15 +477,21 @@ document.querySelectorAll('.filters button').forEach(function(b){
       ctx.restore();
     });
   }
-  var last=0;
-  function loop(t){var dt=Math.min((t-last)/1000||0,.05);last=t;step(dt);draw();requestAnimationFrame(loop)}
+  var last=0, paused=reduce;
+  var pauseButton=document.getElementById("pause-sim");
+  function pauseLabel(){pauseButton.textContent=paused?"Play animation":"Pause animation";pauseButton.setAttribute("aria-pressed",String(paused))}
+  pauseLabel();
+  pauseButton.addEventListener("click",function(){paused=!paused;pauseLabel()});
+  document.getElementById("add-request").addEventListener("click",function(){if(R.length<14){insert(rnd());draw()}});
+  addEventListener("portfolio-theme",draw);
+  function loop(t){var dt=Math.min((t-last)/1000||0,.05);last=t;if(!paused&&!document.hidden){step(dt);draw()}requestAnimationFrame(loop)}
   c.addEventListener('pointerdown',function(e){
     var r=c.getBoundingClientRect(),p={x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height};
     if(R.length<14){insert(p);if(reduce)draw()}
   });
   size();addEventListener('resize',function(){size();draw()});
   if(reduce){for(var i=0;i<6;i++)insert(rnd());for(i=0;i<40;i++)step(.05);draw()}
-  else requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
 })();
 </script>
 </body>
