@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arefeh Madani-Talab · Operations Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F7;--surface:#FFFFFF;--ink:#12263A;--muted:#566879;--line:#D5DDE4;
+  --accent:#3347D6;--accent-soft:#E3E7FB;--req:#E58A1F;
+  --head:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Public Sans","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1822;--surface:#152331;--ink:#E7EEF4;--muted:#9AABBA;--line:#243646;
+    --accent:#93A2FF;--accent-soft:#1C2848;--req:#F4B04F;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1822;--surface:#152331;--ink:#E7EEF4;--muted:#9AABBA;--line:#243646;
+  --accent:#93A2FF;--accent-soft:#1C2848;--req:#F4B04F;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700}
+h3{font-size:1.25rem;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+p{margin:0}
+.muted{color:var(--muted)}
+
+/* nav */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.brand{font:700 1.05rem var(--head);text-decoration:none}
+nav{display:flex;gap:4px}
+nav a{text-decoration:none;font-size:.95rem;font-weight:500;color:var(--muted);padding:8px 12px;border-radius:999px;transition:background .2s,color .2s}
+nav a:hover{background:var(--accent-soft);color:var(--accent)}
+
+/* hero */
+.hero{padding:56px 0 72px}
+.hero .wrap{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.05fr .95fr;gap:56px}.hero{padding:88px 0 96px}}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;letter-spacing:-.035em}
+.lead{font-size:1.2rem;max-width:34em;margin-top:22px;color:var(--muted)}
+.lead strong{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;padding:0;list-style:none}
+.tags li{font-size:.9rem;padding:6px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-block;text-decoration:none;font-weight:600;padding:13px 22px;border-radius:12px;border:1.5px solid var(--ink);transition:transform .15s,background .2s}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:hover{transform:translateY(-2px)}
+.sim{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:12px;box-shadow:0 18px 50px -24px color-mix(in srgb,var(--accent) 45%,transparent)}
+.sim canvas{display:block;cursor:crosshair;touch-action:manipulation;width:100%;aspect-ratio:1/1;border-radius:18px;background:var(--bg)}
+.sim figcaption{display:flex;justify-content:space-between;gap:12px;padding:12px 8px 4px;font-size:.88rem;color:var(--muted)}
+.sim b{color:var(--accent);font-variant-numeric:tabular-nums}
+
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;gap:10px;margin-bottom:36px;max-width:40em}
+
+/* research */
+.feature{background:var(--ink);color:var(--bg);border-radius:24px;padding:clamp(24px,4vw,44px);display:grid;gap:20px}
+.feature h3{font-size:clamp(1.35rem,2.6vw,1.8rem);max-width:30em}
+.feature .meta{opacity:.75;font-size:.95rem}
+.feature ul{margin:0;padding-left:1.1em;display:grid;gap:8px;max-width:46em;opacity:.92}
+.trade{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.trade li{font-size:.88rem;padding:5px 12px;border-radius:8px;border:1px solid color-mix(in srgb,var(--bg) 35%,transparent)}
+.pair{display:grid;gap:20px;margin-top:20px}
+@media(min-width:800px){.pair{grid-template-columns:1fr 1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;display:grid;gap:12px;align-content:start}
+.box .meta{color:var(--muted);font-size:.92rem}
+.box ul{margin:0;padding-left:1.1em;display:grid;gap:6px;color:var(--muted);font-size:.98rem}
+.badge{justify-self:start;font-size:.82rem;font-weight:600;padding:3px 10px;border-radius:6px;background:color-mix(in srgb,var(--req) 22%,transparent);color:var(--ink)}
+
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font:500 .95rem var(--body);padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:all .2s}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.projects{display:grid;gap:12px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;transition:border-color .2s}
+details[open]{border-color:var(--accent)}
+details[hidden]{display:none}
+summary{list-style:none;cursor:pointer;display:grid;gap:4px;padding:20px 56px 20px 24px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:22px;top:50%;translate:0 -50%;font:500 1.6rem var(--head);color:var(--accent);transition:rotate .25s}
+details[open] summary::after{rotate:45deg}
+summary .meta{font-size:.9rem;color:var(--muted)}
+.body{padding:0 24px 24px;display:grid;gap:10px;color:var(--muted);max-width:52em}
+.body ul{margin:0;padding-left:1.1em;display:grid;gap:8px}
+.stack{font-size:.88rem;color:var(--accent);font-weight:500}
+
+/* background */
+.cols{display:grid;gap:48px}
+@media(min-width:900px){.cols{grid-template-columns:1fr 1fr;gap:64px}}
+.cols h3{margin-bottom:18px;font-size:1.5rem}
+.timeline{list-style:none;margin:0;padding:0 0 0 22px;border-left:2px solid var(--line);display:grid;gap:28px}
+.timeline li{position:relative}
+.timeline li::before{content:"";position:absolute;left:-29px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.timeline .when{font-size:.9rem;color:var(--muted)}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.rows li:first-child{border-top:1px solid var(--line)}
+.rows span:last-child{color:var(--muted);white-space:nowrap;font-size:.95rem}
+.rows small{display:block;color:var(--muted);font-size:.9rem}
+.skills{display:grid;gap:18px;margin-top:56px}
+@media(min-width:800px){.skills{grid-template-columns:repeat(2,1fr)}}
+.skills h4{margin:0 0 8px;font:700 1rem var(--head)}
+.skills p{color:var(--muted);font-size:.98rem}
+
+/* contact */
+.contact{padding:96px 0 72px;text-align:left}
+.contact h2{font-size:clamp(2rem,6vw,3.6rem);font-weight:800;max-width:14em}
+.contact .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+footer{padding:24px 0 40px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media(max-width:640px){nav a:nth-child(n+4){display:none}.wrap{padding:0 20px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">Arefeh Madani-Talab</a>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Arefeh Madani-Talab</h1>
+      <p class="lead">M.Sc. researcher in industrial engineering. I love <strong>routing problems</strong> and operations research, and I use data to make better decisions. My thesis asks when a routing system should re-plan as new requests arrive.</p>
+      <ul class="tags">
+        <li>Routing</li><li>Operations research</li><li>Data analytics</li>
+      </ul>
+      <div class="cta">
+        <a class="btn primary" href="#research">Read the research</a>
+        <a class="btn" href="mailto:Arefehmadani@outlook.com">Email me</a>
+      </div>
+    </div>
+    <figure class="sim" style="margin:0">
+      <canvas id="sim" aria-label="Animated sketch: orange requests with shrinking time-window rings appear and three delivery trucks re-plan their routes" role="img"></canvas>
+      <figcaption><span>Click anywhere to add a request and watch the routes re-plan.</span><span>Re-plans: <b id="count">0</b></span></figcaption>
+    </figure>
+  </div>
+</div>
+
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Research</h2>
+      <p class="muted">Thesis work on dynamic routing, plus a supply chain model in preparation.</p>
+    </div>
+
+    <article class="feature">
+      <p class="meta">M.Sc. thesis · Proposal defended · Advisor: Prof. Majid Salari · 2025 to present</p>
+      <h3>A reinforcement learning framework for intervention timing and level in route re-optimization</h3>
+      <p>Dynamic Pickup and Delivery Problem with Time Windows (DPDPTW)</p>
+      <ul>
+        <li>Frames adaptive routing intervention as a sequential decision problem under uncertainty, with operational constraints and real-time limits.</li>
+        <li>Learns policies that decide when to re-optimize and how strongly to intervene as requests arrive.</li>
+        <li>Tests the policies in computational experiments against alternative routing strategies.</li>
+      </ul>
+      <ul class="trade" aria-label="Objectives balanced by the framework">
+        <li>Service feasibility</li><li>Travel cost</li><li>Fleet utilization</li><li>Responsiveness</li><li>Route stability</li><li>Computational effort</li>
+      </ul>
+    </article>
+
+    <div class="pair">
+      <article class="box">
+        <span class="badge">Manuscript in preparation · 2026</span>
+        <h3>Integrated poultry supply chain optimization</h3>
+        <p class="meta">With Dr. Hossein Neghabi</p>
+        <ul>
+          <li>Mixed-integer model covering farm selection, production, slaughterhouses, meat distribution and pet food production.</li>
+          <li>Recovers poultry mortality and slaughterhouse by-products for pet food, with material balances, yields and capacities.</li>
+          <li>Minimizes total cost across upstream and downstream flows, including direct and distribution-center delivery.</li>
+        </ul>
+      </article>
+      <article class="box">
+        <span class="badge">Accepted and presented · ICISE 2026</span>
+        <h3>Combination meal design with market basket analysis</h3>
+        <p class="meta">Nokar, Khani, Koosha &amp; Madani-Talab · 12th International Conference on Industrial and Systems Engineering</p>
+        <ul>
+          <li>Analyzed 600,000+ POS orders (about 1.4 million item records) across 87 menu items.</li>
+          <li>Found 1,448 frequent itemsets and 589 association rules, with Apriori and FP-Growth agreeing exactly.</li>
+          <li>Extended basket analysis with a Product Attractiveness Rate.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Projects</h2>
+      <p class="muted">Open a project for the method and results.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button aria-pressed="true" data-f="all">All</button>
+      <button aria-pressed="false" data-f="opt">Optimization</button>
+      <button aria-pressed="false" data-f="ind">Industrial engineering</button>
+    </div>
+    <div class="projects">
+      <details data-t="opt">
+        <summary><h3>Family Capacitated Vehicle Routing (F-CVRP)</h3><span class="meta">Hybrid metaheuristic · Ferdowsi University of Mashhad</span></summary>
+        <div class="body">
+          <ul>
+            <li>Built FRTS-SP, combining randomized family-aware construction, local search, Reactive Tabu Search, route-pool generation and set-partitioning recombination.</li>
+            <li>Evaluated 384 benchmark instances, with a 25.23% mean cost reduction over the construction stage.</li>
+            <li>Added strict feasibility checks, parameter calibration and a five-seed robustness study on 48 instances.</li>
+          </ul>
+          <p class="stack">Python · SciPy · Jupyter Notebook</p>
+        </div>
+      </details>
+      <details data-t="ind">
+        <summary><h3>Work and time study of a dishwasher assembly line</h3><span class="meta">Course project · Jahan Afrooz Manufacturing and Industrial Company</span></summary>
+        <div class="body">
+          <ul>
+            <li>Used repeated stopwatch observations, performance rating, allowances, two-hand analysis, MTM, MOST, assembly mapping and precedence analysis.</li>
+            <li>Identified the test room as the main bottleneck and proposed layout, workstation and line-balancing changes.</li>
+          </ul>
+        </div>
+      </details>
+      <details data-t="ind">
+        <summary><h3>Facility planning for 70-watt street-light production</h3><span class="meta">Course project · Ferdowsi University of Mashhad</span></summary>
+        <div class="body">
+          <ul>
+            <li>Planned the full facility: product and process analysis, AHP and SWOT location evaluation, capacity, material flow, space, layout, transport and warehouse design.</li>
+            <li>Generated layouts with from-to analysis, activity relationships, the spiral method, ALDEP and CRAFT.</li>
+            <li>Estimated about 6,000 units a year and 1,732 m² of required area under the project assumptions.</li>
+          </ul>
+        </div>
+      </details>
+      <details data-t="ind">
+        <summary><h3>Feasibility study for cosmetic cream manufacturing</h3><span class="meta">Team project · Ferdowsi University of Mashhad</span></summary>
+        <div class="body">
+          <ul>
+            <li>Assessed market, technical, operational, facility and financial feasibility, from demand and supply to process design.</li>
+            <li>Evaluated investment with ROI, NPV, payback and sensitivity analysis.</li>
+            <li>Compared financing and working-capital scenarios over a multi-year horizon.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="background">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Education and honors</h3>
+        <ol class="timeline">
+          <li>
+            <span class="when">Sep 2025 to present · expected August 2027</span>
+            <h3 style="font-size:1.1rem">M.Sc. Industrial Engineering, Optimization Methods</h3>
+            <p class="muted">Ferdowsi University of Mashhad. Admitted directly through the Exceptional Talents pathway, without the national entrance exam.</p>
+          </li>
+          <li>
+            <span class="when">2021 to 2025</span>
+            <h3 style="font-size:1.1rem">B.Sc. Industrial Engineering</h3>
+            <p class="muted">Ferdowsi University of Mashhad. GPA 18.49/20, ranked 3rd in the program and named an Outstanding Student of the university.</p>
+          </li>
+        </ol>
+      </div>
+      <div>
+        <h3>Teaching</h3>
+        <ul class="rows">
+          <li><span>Combinatorial Optimization<small>Prof. Majid Salari</small></span><span>Fall 2026</span></li>
+          <li><span>Operations Research I<small>Prof. Majid Salari</small></span><span>Fall 2026</span></li>
+          <li><span>Quality Control<small>Dr. Ali Yeganeh</small></span><span>Fall 2024</span></li>
+          <li><span>Inventory Control<small>Assoc. Prof. F. Dehghanian</small></span><span>Spring 2024</span></li>
+        </ul>
+        <h3 style="margin:40px 0 18px">Experience and service</h3>
+        <ul class="rows">
+          <li><span>Planning and Development Intern<small>Pardis Ceram Pazh · KPIs, CAPA, internal audits</small></span><span>2024</span></li>
+          <li><span>Scientific Team, ICISE<small>12th edition</small></span><span>2026</span></li>
+          <li><span>Scientific Team, ICISE<small>11th edition</small></span><span>2025</span></li>
+          <li><span>Executive Team, ICISE<small>9th edition</small></span><span>2023</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="skills">
+      <div><h4>Programming and scientific computing</h4><p>Python, Jupyter, NumPy, pandas, SciPy, scikit-learn, Matplotlib, seaborn</p></div>
+      <div><h4>Optimization and operations</h4><p>Mathematical and combinatorial optimization, vehicle routing, simulation, inventory control, facility planning, work measurement</p></div>
+      <div><h4>Machine learning and analytics</h4><p>Regression, classification, clustering, recommender systems, Power BI, Excel, Access</p></div>
+      <div><h4>Tools and languages</h4><p>GitHub, Google Colab, Vensim, MS Project, Visio · Persian (native), English (fluent)</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let’s talk about routing, operations research, data or a collaboration.</h2>
+    <div class="links">
+      <a class="btn primary" href="mailto:Arefehmadani@outlook.com">Arefehmadani@outlook.com</a>
+      <a class="btn" href="http://www.linkedin.com/in/arefehmadani" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/Arefehmdt" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">Mashhad, Iran</div></footer>
+
+<script>
+// Project filters
+document.querySelectorAll('.filters button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.filters button').forEach(function(o){o.setAttribute('aria-pressed',o===b)});
+    var f=b.dataset.f;
+    document.querySelectorAll('.projects details').forEach(function(d){d.hidden=!(f==='all'||d.dataset.t===f)});
+  });
+});
+
+// Hero: dynamic routing sketch
+(function(){
+  var c=document.getElementById('sim'),ctx=c.getContext('2d'),cnt=document.getElementById('count');
+  var W=0,H=0,depot={x:.5,y:.5},V=[],R=[],rip=[],replans=0,spawn=0,time=0;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LIGHT=['#3347D6','#0E9F8E','#C0399B'],DARK=['#93A2FF','#4FD1BE','#F08ACF'];
+  function pal(){var t=document.documentElement.getAttribute('data-theme');var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);return d?DARK:LIGHT}
+  function size(){var r=c.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;c.width=W*d;c.height=H*d;ctx.setTransform(d,0,0,d,0,0)}
+  function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+  function rnd(){var p;do{p={x:.08+Math.random()*.84,y:.08+Math.random()*.84}}while(dist(p,depot)<.14);return p}
+  for(var i=0;i<3;i++)V.push({x:depot.x,y:depot.y,q:[],trail:[],ang:-1.2+i*1.2,flash:0});
+  function insert(p){
+    var best=1e9,bv=null,bi=0;
+    V.forEach(function(v){
+      var path=[v].concat(v.q,[depot]);
+      for(var i=0;i<path.length-1;i++){
+        var cost=dist(path[i],p)+dist(p,path[i+1])-dist(path[i],path[i+1])+v.q.length*.02;
+        if(cost<best){best=cost;bv=v;bi=i}
+      }
+    });
+    bv.q.splice(bi,0,p);bv.flash=1;p.age=0;p.ttl=20+Math.random()*6;p.v=bv;R.push(p);replans++;cnt.textContent=replans;
+  }
+  function drop(p){R.splice(R.indexOf(p),1)}
+  function step(dt){
+    time+=dt;spawn-=dt;
+    if(spawn<=0&&R.length<9){insert(rnd());spawn=1.8+Math.random()*.9}
+    V.forEach(function(v,k){
+      var t=v.q[0]||depot,d=dist(v,t),s=.13*dt;
+      v.flash=Math.max(0,v.flash-dt*.6);
+      if(d<=s){v.x=t.x;v.y=t.y;if(v.q[0]){rip.push({x:t.x,y:t.y,a:0,k:k});drop(t);v.q.shift()}}
+      else{v.ang=Math.atan2((t.y-v.y)*H,(t.x-v.x)*W);v.x+=(t.x-v.x)/d*s;v.y+=(t.y-v.y)/d*s}
+      v.trail.push({x:v.x,y:v.y});if(v.trail.length>26)v.trail.shift();
+    });
+    R.slice().forEach(function(p){p.age+=dt;if(p.age>p.ttl){p.v.q.splice(p.v.q.indexOf(p),1);drop(p)}});
+    rip.forEach(function(r){r.a+=dt*1.1});rip=rip.filter(function(r){return r.a<1});
+  }
+  function draw(){
+    var cs=getComputedStyle(document.documentElement),P=pal(),req=cs.getPropertyValue('--req').trim(),ink=cs.getPropertyValue('--ink').trim(),sur=cs.getPropertyValue('--surface').trim(),bg=cs.getPropertyValue('--bg').trim(),line=cs.getPropertyValue('--line').trim();
+    function X(p){return p.x*W}function Y(p){return p.y*H}
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=line;
+    for(var gx=14;gx<W;gx+=28)for(var gy=14;gy<H;gy+=28){ctx.beginPath();ctx.arc(gx,gy,1.2,0,7);ctx.fill()}
+    ctx.lineCap='round';ctx.lineJoin='round';
+    V.forEach(function(v,k){
+      var col=P[k];
+      ctx.beginPath();ctx.moveTo(X(v),Y(v));v.q.forEach(function(p){ctx.lineTo(X(p),Y(p))});ctx.lineTo(X(depot),Y(depot));
+      if(v.flash>0){ctx.setLineDash([]);ctx.lineWidth=10;ctx.strokeStyle=col;ctx.globalAlpha=.16*v.flash;ctx.stroke()}
+      ctx.setLineDash([1,9]);ctx.lineDashOffset=-time*16;ctx.lineWidth=3.5;ctx.strokeStyle=col;ctx.globalAlpha=.55+.45*v.flash;ctx.stroke();
+      ctx.setLineDash([]);ctx.globalAlpha=1;
+      for(var i=0;i<v.trail.length;i++){var q=v.trail[i];ctx.beginPath();ctx.arc(X(q),Y(q),1+i*.12,0,7);ctx.fillStyle=col;ctx.globalAlpha=i/v.trail.length*.35;ctx.fill()}
+      ctx.globalAlpha=1;
+    });
+    rip.forEach(function(r){ctx.beginPath();ctx.arc(X(r),Y(r),8+r.a*26,0,7);ctx.lineWidth=2.5;ctx.strokeStyle=P[r.k];ctx.globalAlpha=1-r.a;ctx.stroke();ctx.globalAlpha=1});
+    R.forEach(function(p){
+      var left=Math.max(0,1-p.age/p.ttl);
+      ctx.lineWidth=3;ctx.strokeStyle=line;ctx.beginPath();ctx.arc(X(p),Y(p),13,0,7);ctx.stroke();
+      ctx.strokeStyle=req;ctx.beginPath();ctx.arc(X(p),Y(p),13,-Math.PI/2,-Math.PI/2+Math.PI*2*left);ctx.stroke();
+      if(p.age<1){ctx.beginPath();ctx.arc(X(p),Y(p),13+p.age*20,0,7);ctx.lineWidth=2;ctx.globalAlpha=1-p.age;ctx.stroke();ctx.globalAlpha=1}
+      ctx.beginPath();ctx.arc(X(p),Y(p),5.5,0,7);ctx.fillStyle=req;ctx.fill();
+    });
+    var dx=X(depot),dy=Y(depot);
+    ctx.fillStyle=ink;ctx.beginPath();ctx.roundRect(dx-11,dy-11,22,22,6);ctx.fill();
+    ctx.fillStyle=bg;ctx.beginPath();ctx.roundRect(dx-4,dy-4,8,8,2);ctx.fill();
+    V.forEach(function(v,k){
+      ctx.save();ctx.translate(X(v),Y(v));ctx.rotate(v.ang);ctx.scale(1.15,1.15);
+      ctx.fillStyle=ink;
+      [[-12,-9],[-12,7],[5,-9],[5,7]].forEach(function(w){ctx.beginPath();ctx.roundRect(w[0],w[1],6,2.5,1);ctx.fill()});
+      ctx.shadowColor=P[k];ctx.shadowBlur=14;ctx.lineWidth=2;ctx.strokeStyle=sur;ctx.fillStyle=P[k];
+      ctx.beginPath();ctx.roundRect(-16,-7.5,19,15,3);ctx.fill();ctx.stroke();
+      ctx.beginPath();ctx.roundRect(4,-6.5,10,13,3.5);ctx.fill();ctx.stroke();
+      ctx.shadowBlur=0;ctx.fillStyle=sur;
+      ctx.beginPath();ctx.roundRect(9.5,-4.5,3,9,1);ctx.fill();
+      ctx.globalAlpha=.35;ctx.fillRect(-13,-0.75,13,1.5);ctx.globalAlpha=1;
+      ctx.restore();
+    });
+  }
+  var last=0;
+  function loop(t){var dt=Math.min((t-last)/1000||0,.05);last=t;step(dt);draw();requestAnimationFrame(loop)}
+  c.addEventListener('pointerdown',function(e){
+    var r=c.getBoundingClientRect(),p={x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height};
+    if(R.length<14){insert(p);if(reduce)draw()}
+  });
+  size();addEventListener('resize',function(){size();draw()});
+  if(reduce){for(var i=0;i<6;i++)insert(rnd());for(i=0;i<40;i++)step(.05);draw()}
+  else requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
